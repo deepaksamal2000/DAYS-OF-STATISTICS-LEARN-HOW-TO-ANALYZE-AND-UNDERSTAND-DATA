@@ -1,0 +1,54 @@
+    import java.util.*;
+
+    public class Solution {
+
+        public static void main(String[] args) {
+
+            Scanner scn=new Scanner(System.in);
+            int n= scn.nextInt();
+            ArrayList<Long> list=new ArrayList<Long>();
+            for(int i=0;i<n;i++)
+            {
+                list.add(scn.nextLong());
+            }
+            Collections.sort(list);
+            float mean = 0;
+            float meadian=0;
+            TreeMap<Long,Integer> map=new TreeMap<Long, Integer>();
+            int c=0;
+            for (long l1:list) {
+                mean+=l1;
+                c++;
+                if(c==(n/2)){
+                    meadian+=l1;
+                }
+                else if (c==((n/2)+1)){
+                    meadian+=l1;
+                }
+
+
+                if (map.get(l1)==null) {
+                    map.put(l1, 1);
+                }
+                else{
+                        map.put(l1,map.get(l1)+1);
+            }
+            }
+            int d=1;
+            long a=list.get(0);
+
+            for (Map.Entry item:map.entrySet()
+                 ) {
+               if( (int)item.getValue()>d){
+                   d=(int)item.getValue();
+                   a=(long)item.getKey();
+               }
+
+            }
+            System.out.println(mean/n);
+            System.out.println((float)meadian/2);
+            System.out.println(a);
+
+        }
+
+    }
